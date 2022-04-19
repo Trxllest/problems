@@ -1,3 +1,16 @@
+'''
+How does it work?
+1. Start with an empty or random solution. This is called our best solution
+2. Make a copy of the solution and mutate it slightly
+3. Evaluate the new solution. If it's better than the best solution, we replace the best solution with this one
+4. Go to step two and repeat
+So basically to evolve a solution to a problem, you need to write three functions.
+1. Create a random solution
+2. Evaluate a solution and return a score
+3. Mutate a solution in a random way
+'''
+#Infinite Monkey Problem 
+
 import random
 
 monkey = "methinks it is like a weasel"
