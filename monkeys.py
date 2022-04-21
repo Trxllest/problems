@@ -69,11 +69,27 @@ def generate(goal,n):
             print(f'trying again current score is {best_score}')
             
 #stuck at 92.86%
-generate(monkey,28)
+#generate(monkey,28)
 
-
-
-
+#version 2 of solution
+def gen1(goal,n):
+    target = goal
+    phrase = gen_string(n)
+    score_curr = score(target,phrase)
+    while score_curr<1:
+        new_phrase = ""
+        for i in range(len(goal)):
+            if phrase[i] == goal[i]:
+                new_phrase += phrase[i]
+            else:
+                new_phrase += random.choice('abcdefghijclmnopqrstuvwxyz ')
+        phrase = new_phrase
+        score_curr = score(target,phrase)
+        print(f'trying again your score is {score_curr}')
+    if score_curr == 1:
+        print(f'Well done your score is {score_curr} for:{phrase}')
+        return
+gen1(monkey,28)
 
 
     
