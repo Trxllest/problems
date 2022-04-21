@@ -47,14 +47,16 @@ def score(goal,phrase):
 #gen_goal(monkey,28)
 
 ### Keeps the best iteration
-def generate(goal,n):
-    target = goal
+def generate():
+    target = input('Type a phrase with no punctuation and only letters please! ')
+    n = len(target)
     current_phrase = gen_string(n)
     best_score = score(target,current_phrase)
     attempts = 0
     while best_score<1:
-        if best_score == 0:
-            break
+        """if best_score == 0:
+            current_phrase = gen_string(n)
+            best_score = score(target,current_phrase)"""
         los = list(current_phrase)
         index = random.randint(0,(len(los)-1))
         los[index] = random.choice('abcdefghijklmnopqrstuvwxyz ') ## Previous issue was i forgot 'K' in alphabet
@@ -71,29 +73,8 @@ def generate(goal,n):
             attempts += 1
             
 #stuck at 92.86% ## Finally Fixed it
-generate(monkey,28)
+generate()
 
-
-
-"""#version 2 of solution
-def gen1(goal,n):
-    target = goal
-    phrase = gen_string(n)
-    score_curr = score(target,phrase)
-    while score_curr<1:
-        new_phrase = ""
-        for i in range(len(goal)):
-            if phrase[i] == goal[i]:
-                new_phrase += phrase[i]
-            else:
-                new_phrase += random.choice('abcdefghijklmnopqrstuvwxyz ')
-        phrase = new_phrase
-        score_curr = score(target,phrase)
-        print(f'trying again your score is {score_curr}')
-    if score_curr == 1:
-        print(f'Well done your score is {score_curr} for:{phrase}')
-        return"""
-#gen1(monkey,28)
 
 
     
