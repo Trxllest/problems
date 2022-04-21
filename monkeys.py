@@ -17,7 +17,7 @@ monkey = "methinks it is like a weasel"
 
 #generates a string of random characters of len n
 def gen_string(nlen):
-    alphabet = 'abcdefghijclmnopqrstuvwxyz '
+    alphabet = 'abcdefghijklmnopqrstuvwxyz '
     phrase = ''
     for i in range(nlen):
         phrase += random.choice(alphabet)
@@ -51,27 +51,31 @@ def generate(goal,n):
     target = goal
     current_phrase = gen_string(n)
     best_score = score(target,current_phrase)
+    attempts = 0
     while best_score<1:
         if best_score == 0:
             break
         los = list(current_phrase)
         index = random.randint(0,(len(los)-1))
-        los[index] = random.choice('abcdefghijclmnopqrstuvwxyz ')
+        los[index] = random.choice('abcdefghijklmnopqrstuvwxyz ') ## Previous issue was i forgot 'K' in alphabet
         new_phrase = ''.join(map(str, los))
         new_phrase_score = score(target,new_phrase)
         if new_phrase_score > best_score:
             current_phrase = new_phrase
             best_score = new_phrase_score
         if best_score == 1:
-            print('You did it ' + current_phrase)
+            print('You did it ' + current_phrase + f'...on attempt:{attempts}')
             break
         else:
-            print(f'trying again current score is {best_score}')
+            print(f'trying again current score is {best_score} attempt:{attempts}')
+            attempts += 1
             
-#stuck at 92.86%
-#generate(monkey,28)
+#stuck at 92.86% ## Finally Fixed it
+generate(monkey,28)
 
-#version 2 of solution
+
+
+"""#version 2 of solution
 def gen1(goal,n):
     target = goal
     phrase = gen_string(n)
@@ -82,14 +86,14 @@ def gen1(goal,n):
             if phrase[i] == goal[i]:
                 new_phrase += phrase[i]
             else:
-                new_phrase += random.choice('abcdefghijclmnopqrstuvwxyz ')
+                new_phrase += random.choice('abcdefghijklmnopqrstuvwxyz ')
         phrase = new_phrase
         score_curr = score(target,phrase)
         print(f'trying again your score is {score_curr}')
     if score_curr == 1:
         print(f'Well done your score is {score_curr} for:{phrase}')
-        return
-gen1(monkey,28)
+        return"""
+#gen1(monkey,28)
 
 
     
